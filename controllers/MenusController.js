@@ -13,9 +13,40 @@ export const getMenus = async (req, res) => {
   }
 };
 
+export const createMenus = async (req, res) => {
+  const { name, image, category } = req.body;
+
+  const stock = {
+    quantity: 20,
+    stock: true,
+  };
+
+  try {
+    const createMenus = await prisma.products_PPKD.create({
+      data: {
+        name,
+        image,
+        category,
+        inStock: JSON.stringify(stock),
+      },
+    });
+    res.status(201).json({
+      status: true,
+      message: "Create Menus successfully",
+      data: createMenus,
+    });
+  } catch (error) {
+    res.send({
+      status: false,
+      message: "Error create Menus",
+      errorMessage: error.message,
+      errorDetail: error,
+    });
+  }
+};
+
 export const createOrder = async (req, res) => {
   const { username, data } = req.body;
-  console.log(data);
 
   try {
     const createMenus = await prisma.orders.create({

@@ -4,11 +4,16 @@ import {
   createOrder,
   getOrderById,
   getAllOrders,
+  createMenus,
 } from "../controllers/MenusController.js";
 
 const router = Router();
 
+// GET - GET MENUS
 router.get("/menus", getMenus);
+
+// POST - CREATE MENUS
+router.post("/menus", createMenus);
 router.get("/orders", getAllOrders);
 router.post("/order", createOrder);
 router.get("/order/:id", getOrderById);

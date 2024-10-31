@@ -17,7 +17,7 @@ model Products_PPKD {
   id        Int       @id @default(autoincrement())
   name      String
   image     String
-  inStock   Boolean   @default(false)
+  inStock   Json   
   category  String    
 }
 

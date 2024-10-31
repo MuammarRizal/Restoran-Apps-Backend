@@ -13,6 +13,6 @@ app.use(express.json());
 // routes
 app.use("/api", ProductRoute);
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 5000, "0.0.0.0", () => {
   console.log("Server up and running on port", process.env.PORT || 5000);
 });

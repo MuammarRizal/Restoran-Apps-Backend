@@ -17,8 +17,9 @@ model Products_PPKD {
   id        Int       @id @default(autoincrement())
   name      String
   image     String
-  inStock   Json   
-  category  String    
+  inStock   Json   // stock dan quantity
+  items     Json    
+  datas     Json
 }
 
 model Orders{

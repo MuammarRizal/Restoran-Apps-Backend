@@ -1,0 +1,4 @@
+### GET Menus
+
+# GET MENUS
+GET http://localhost:5000/api/menus

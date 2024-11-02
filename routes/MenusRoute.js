@@ -5,6 +5,7 @@ import {
   getOrderById,
   getAllOrders,
   createMenus,
+  updateOrder,
 } from "../controllers/MenusController.js";
 
 const router = Router();
@@ -17,7 +18,7 @@ router.post("/menus", createMenus);
 router.get("/orders", getAllOrders);
 router.post("/order", createOrder);
 router.get("/order/:id", getOrderById);
-// router.put("/:id", updateMenus);
+router.put("/order/:id", updateOrder);
 // router.delete("/:id", deleteMenus);
 
 export default router;

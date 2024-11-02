@@ -14,20 +14,22 @@ export const getMenus = async (req, res) => {
 };
 
 export const createMenus = async (req, res) => {
-  const { name, image, category } = req.body;
+  const { name, image, items } = req.body;
 
   const stock = {
     quantity: 20,
     stock: true,
   };
 
+  const dataRes = [{}];
   try {
     const createMenus = await prisma.products_PPKD.create({
       data: {
         name,
         image,
-        category,
+        items,
         inStock: JSON.stringify(stock),
+        datas: JSON.stringify(dataRes),
       },
     });
     res.status(201).json({
@@ -117,6 +119,26 @@ export const getOrderById = async (req, res) => {
       message: "Error in get data",
       errorMessage: error.message,
       errorDetail: error,
+    });
+  }
+};
+
+export const updateOrder = async (req, res) => {
+  try {
+    const orderId = Number(req.params.id);
+
+    const updatedOrder = await prisma.orders.update({
+      where: { id: orderId },
+      data: {
+        data: JSON.stringify(req.body.process),
+      },
+    });
+
+    res.status(200).json({ updatedOrder, image: req.body.image });
+  } catch (error) {
+    res.status(500).json({
+      errorDetail: error,
+      errorMessage: error.message,
     });
   }
 };

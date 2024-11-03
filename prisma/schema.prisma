@@ -28,3 +28,8 @@ model Orders{
   cart      Json      
   data      String
 }
+
+model ValidationOrder{
+  id_qr     Int       @id
+  data      Json
+}

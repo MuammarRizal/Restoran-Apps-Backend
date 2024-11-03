@@ -142,3 +142,49 @@ export const updateOrder = async (req, res) => {
     });
   }
 };
+
+export const updateQuantity = async (req, res) => {
+  try {
+    const orderQuantity = Number(req.body.quantity);
+    const orderId = Number(req.params.id);
+
+    // Ambil produk berdasarkan orderId
+    const product = await prisma.products_PPKD.findUnique({
+      where: { id: orderId },
+    });
+
+    // Cek jika produk tidak ditemukan
+    if (!product) {
+      return res
+        .status(404)
+        .json({ status: false, message: "Product tidak ditemukan" });
+    }
+
+    // Parse inStock dari JSON string menjadi objek
+    const inStock = JSON.parse(product.inStock);
+    // Kurangi quantity dengan orderQuantity
+    inStock.quantity -= orderQuantity;
+
+    // Pastikan quantity tidak negatif
+    if (inStock.quantity < 0) {
+      return res
+        .status(400)
+        .json({ status: false, message: "Stok tidak cukup" });
+    }
+
+    // Update produk dengan inStock yang baru
+    const updatedProduct = await prisma.products_PPKD.update({
+      where: { id: orderId },
+      data: {
+        inStock: JSON.stringify(inStock),
+      },
+    });
+
+    res.status(200).json({ product: updatedProduct });
+  } catch (error) {
+    res.status(500).json({
+      errorDetail: error,
+      errorMessage: error.message,
+    });
+  }
+};

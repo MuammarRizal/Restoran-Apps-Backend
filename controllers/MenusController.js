@@ -48,16 +48,18 @@ export const createMenus = async (req, res) => {
 };
 
 export const createOrder = async (req, res) => {
-  const { username, data } = req.body;
-
+  const { username, data, table } = req.body;
+  console.log(username);
   try {
     const createMenus = await prisma.orders.create({
       data: {
         username,
+
         cart: JSON.stringify(data),
         // data: JSON.stringify(data),
         data: JSON.stringify({
           process: false,
+          table: table,
           timestamp: new Date(),
         }),
       },

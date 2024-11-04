@@ -2,6 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+export const testingMenus = async (req, res) => {
+  res.send({ message: "Hello world" });
+};
 export const getMenus = async (req, res) => {
   try {
     const menus = await prisma.products_PPKD.findMany();

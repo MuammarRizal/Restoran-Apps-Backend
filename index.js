@@ -39,5 +39,5 @@ const HOST = "0.0.0.0"; // Host, bisa diubah sesuai kebutuhan
 
 https.createServer(options, app).listen(PORT, HOST, () => {
   console.log("SSL Added");
-  console.log(`Server up and running at http://${localIp}:${PORT}`);
+  console.log(`Server up and running at http | https://${localIp}:${PORT}`);
 });

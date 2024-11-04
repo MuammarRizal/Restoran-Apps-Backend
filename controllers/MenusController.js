@@ -7,7 +7,7 @@ export const testingMenus = async (req, res) => {
 };
 export const getMenus = async (req, res) => {
   try {
-    const menus = await prisma.products_PPKD.findMany();
+    const menus = await prisma.products_ppkd.findMany();
     res.send({ status: true, message: "Get all menus is successfully", menus });
   } catch (error) {
     res.status(500).json({

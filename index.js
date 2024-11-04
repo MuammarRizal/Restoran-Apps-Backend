@@ -34,7 +34,7 @@ app.use(express.json());
 // routes
 app.use("/api", ProductRoute);
 
-const PORT = process.env.PORT || 5000;
+const PORT = 3002;
 const HOST = "0.0.0.0"; // Host, bisa diubah sesuai kebutuhan
 
 https.createServer(options, app).listen(PORT, HOST, () => {

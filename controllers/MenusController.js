@@ -12,6 +12,7 @@ export const getMenus = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Error Server",
+      errorMessage: error.message,
     });
   }
 };

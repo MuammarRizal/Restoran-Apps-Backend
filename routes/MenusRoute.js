@@ -7,12 +7,14 @@ import {
   createMenus,
   updateOrder,
   updateQuantity,
+  testingMenus,
 } from "../controllers/MenusController.js";
 import { ValidationOrder } from "../controllers/ValidationOrder.js";
 
 const router = Router();
 
 // GET - GET MENUS
+router.get("/", testingMenus);
 router.get("/menus", getMenus);
 
 // POST - CREATE MENUS

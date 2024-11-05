@@ -12,7 +12,7 @@ export const ValidationOrder = async (req, res) => {
       },
     });
 
-    if (Number(idQr) > 100 || Number(idQr) <= 0) {
+    if (Number(idQr) > 400 || Number(idQr) <= 0) {
       return res.status(400).json({
         status: false,
         message: "QR Tidak valid",
@@ -23,7 +23,7 @@ export const ValidationOrder = async (req, res) => {
     if (existingOrder) {
       return res.status(409).json({
         status: false,
-        message: "Anda sudah memesan makanan",
+        message: "Qr sudah Digunakan",
         data: existingOrder,
       });
     }
@@ -43,7 +43,7 @@ export const ValidationOrder = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       status: false,
-      message: error.message,
+      message: "QR Tidak valid",
     });
   }
 };
